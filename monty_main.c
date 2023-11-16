@@ -13,7 +13,6 @@ int main(int ac, char *av[])
 	FILE *file;
 	stack_t *stack = NULL;
 
-	void initialize(void);
 	instruction_t instructions[] = {
 		{"push", push},	{"pall", pall},
 		{NULL, NULL}};
@@ -28,6 +27,7 @@ int main(int ac, char *av[])
 		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
+	initialize();
 	file_reading(file, &stack, instructions);
 	free_the_stack(&stack);
 	fclose(file);
