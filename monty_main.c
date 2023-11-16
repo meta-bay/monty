@@ -29,7 +29,7 @@ int main(int ac, char *av[])
 		exit(EXIT_FAILURE);
 	}
 	file_reading(file, &stack, instructions);
-	free_the_stack(@stack);
+	free_the_stack(&stack);
 	fclose(file);
 	free(glob_vars.line_read);
 	exit(EXIT_SUCCESS);
