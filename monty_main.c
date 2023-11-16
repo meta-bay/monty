@@ -1,7 +1,6 @@
 #include "monty.h"
 
-glo_vars glob_vars = {NULL, NULL, NULL, NULL, 0, 0, 0};
-
+glo_vars *glob_vars = NULL;
 /**
  * main - entry of the program
  * @ac: number of arguments
@@ -14,6 +13,7 @@ int main(int ac, char *av[])
 	FILE *file;
 	stack_t *stack = NULL;
 
+	void initialize(void);
 	instruction_t instructions[] = {
 		{"push", push},	{"pall", pall},
 		{NULL, NULL}};
@@ -31,6 +31,6 @@ int main(int ac, char *av[])
 	file_reading(file, &stack, instructions);
 	free_the_stack(&stack);
 	fclose(file);
-	free(glob_vars.line_read);
+	free(glob_vars->line_read);
 	exit(EXIT_SUCCESS);
 }

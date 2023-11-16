@@ -10,10 +10,10 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node;
 
-	if (!is_args_valid(glob_vars.the_tokens[0], glob_vars.the_tokens[1]))
+	if (!is_args_valid(glob_vars->the_tokens[0], glob_vars->the_tokens[1]))
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		glob_vars.err_stat = -1;
+		glob_vars->err_stat = -1;
 		return;
 	}
 
@@ -21,10 +21,10 @@ void push(stack_t **stack, unsigned int line_number)
 	if (!new_node)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		glob_vars.err_stat = -1;
+		glob_vars->err_stat = -1;
 		return;
 	}
-	new_node->n = atoi(glob_vars.args);
+	new_node->n = atoi(glob_vars->the_tokens[1]);
 	new_node->prev = NULL;
 	if (*stack == NULL)
 	{

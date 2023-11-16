@@ -9,28 +9,28 @@
 
 void file_reading(FILE *file, stack_t **stack, instruction_t *instructions)
 {
-	glob_vars.line_read = malloc(1024);
-	if (!glob_vars.line_read)
+	glob_vars->line_read = malloc(1024);
+	if (!glob_vars->line_read)
 		exit(EXIT_FAILURE);
-	while (fgets(glob_vars.line_read, 1024, file))
+	while (fgets(glob_vars->line_read, 1024, file))
 	{
-		glob_vars.line_number++;
-		if (is_line_empty(glob_vars.line_read) || is_it_comment(glob_vars.line_read))
+		glob_vars->line_number++;
+		if (is_line_empty(glob_vars->line_read) ||
+		is_it_comment(glob_vars->line_read))
 			continue;
 		tokenize();
-		if (!is_op_valid(glob_vars.the_tokens[0], instructions))
+		if (!is_op_valid(glob_vars->the_tokens[0], instructions))
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n",
-			glob_vars.line_number, glob_vars.the_tokens[0]);
+			glob_vars->line_number, glob_vars->the_tokens[0]);
 			free_the_stack(stack);
 			fclose(file);
 			exit(EXIT_FAILURE);
 		}
-		insert(glob_vars.the_tokens, glob_vars.line_number, file);
-		instruct_ident(stack, glob_vars.line_number, file, instructions);
+		instruct_ident(stack, glob_vars->line_number, file, instructions);
 		delet();
-		glob_vars.line_read = malloc(1024);
-		if (!glob_vars.line_read)
+		glob_vars->line_read = malloc(1024);
+		if (!glob_vars->line_read)
 			exit(EXIT_FAILURE);
 	}
 }
@@ -45,11 +45,11 @@ bool is_line_empty(char *line_read)
 {
 	int i = 0;
 
-	if (glob_vars.line_read[i] == '\n')
+	if (line_read[i] == '\n')
 		return (true);
-	while (glob_vars.line_read[i] != '\n')
+	while (line_read[i] != '\n')
 	{
-		if (glob_vars.line_read[i] != ' ' && glob_vars.line_read[i] != '\t')
+		if (line_read[i] != ' ' && line_read[i] != '\t')
 			return (false);
 		i++;
 	}
@@ -66,10 +66,9 @@ bool is_it_comment(char *line_read)
 {
 	int i = 0;
 
-	while (glob_vars.line_read[i] != '\n' &&
-	(glob_vars.line_read[i] == ' ' || glob_vars.line_read[i] == '\t'))
+	while (line_read[i] != '\n' && (line_read[i] == ' ' || line_read[i] == '\t'))
 		i++;
-	if (glob_vars.line_read[i] != '#')
+	if (line_read[i] != '#')
 		return (false);
 	return (true);
 }
@@ -89,9 +88,9 @@ void instruct_ident(stack_t **stack, unsigned int line_number,
 
 	while (instructions[i].opcode)
 	{
-		if (strcmp(glob_vars.the_tokens[0], instructions[i].opcode) == 0)
+		if (strcmp(glob_vars->the_tokens[0], instructions[i].opcode) == 0)
 			(instructions[i].f)(stack, line_number);
-		if ((glob_vars.err_stat) < 0)
+		if ((glob_vars->err_stat) < 0)
 		{
 			delet();
 			free_the_stack(stack);
