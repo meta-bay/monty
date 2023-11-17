@@ -95,6 +95,7 @@ void instruct_ident(stack_t **stack, unsigned int line_number,
 		{
 			free_the_stack(stack);
 			fclose(file);
+			free_globals();
 			exit(EXIT_FAILURE);
 		}
 		i++;

@@ -13,9 +13,8 @@ void push(stack_t **stack, unsigned int line_number)
 	if (!is_args_valid(glob_vars->the_tokens[0], glob_vars->the_tokens[1]))
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		free_the_stack(stack);
-		free_globals();
-		exit(EXIT_FAILURE);
+		glob_vars->err_stat = -1;
+		return;
 	}
 
 	new_node = malloc(sizeof(stack_t));
