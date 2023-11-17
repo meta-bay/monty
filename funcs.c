@@ -68,3 +68,16 @@ void free_the_stack(stack_t **stack)
 	}
 	free(*stack);
 }
+
+/**
+ * free_globals - frees the global variables
+ */
+void free_globals(void)
+{
+	if (glob_vars)
+	{
+		free(glob_vars->line_read);
+		free(glob_vars);
+		glob_vars = NULL;
+	}
+}

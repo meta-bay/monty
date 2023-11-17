@@ -28,7 +28,6 @@ void file_reading(FILE *file, stack_t **stack, instruction_t *instructions)
 			exit(EXIT_FAILURE);
 		}
 		instruct_ident(stack, glob_vars->line_number, file, instructions);
-		delet();
 		glob_vars->line_read = malloc(1024);
 		if (!glob_vars->line_read)
 			exit(EXIT_FAILURE);
@@ -92,7 +91,6 @@ void instruct_ident(stack_t **stack, unsigned int line_number,
 			(instructions[i].f)(stack, line_number);
 		if ((glob_vars->err_stat) < 0)
 		{
-			delet();
 			free_the_stack(stack);
 			fclose(file);
 			exit(EXIT_FAILURE);

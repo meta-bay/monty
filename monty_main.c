@@ -31,6 +31,6 @@ int main(int ac, char *av[])
 	file_reading(file, &stack, instructions);
 	free_the_stack(&stack);
 	fclose(file);
-	free(glob_vars->line_read);
+	free_globals();
 	exit(EXIT_SUCCESS);
 }

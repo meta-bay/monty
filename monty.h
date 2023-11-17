@@ -76,12 +76,10 @@ void instruct_ident(stack_t **stack, unsigned int line_number,
 bool is_op_valid(char *op, instruction_t instructions[]);
 void free_the_stack(stack_t **stack);
 void display(void);
-void delet(void);
-void free_mem(char **mem);
 bool is_line_empty(char *line_read);
 bool is_it_comment(char *line_read);
-void handle_malloc_err(char **ptr, FILE *file);
 bool is_args_valid(char *op, char *args);
 void initialize(void);
+void free_globals(void);
 
 #endif
