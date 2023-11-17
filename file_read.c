@@ -25,6 +25,7 @@ void file_reading(FILE *file, stack_t **stack, instruction_t *instructions)
 			glob_vars->line_number, glob_vars->the_tokens[0]);
 			free_the_stack(stack);
 			fclose(file);
+			free_globals();
 			exit(EXIT_FAILURE);
 		}
 		instruct_ident(stack, glob_vars->line_number, file, instructions);
