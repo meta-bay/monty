@@ -28,6 +28,7 @@ void file_reading(FILE *file, stack_t **stack, instruction_t *instructions)
 			exit(EXIT_FAILURE);
 		}
 		instruct_ident(stack, glob_vars->line_number, file, instructions);
+		free(glob_vars->line_read);
 		glob_vars->line_read = malloc(1024);
 		if (!glob_vars->line_read)
 			exit(EXIT_FAILURE);
