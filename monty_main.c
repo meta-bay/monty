@@ -18,7 +18,10 @@ int main(int ac, char *av[])
 		{"pint", pint}, {"pop", pop},
 		{"swap", swap}, {"add", add},
 		{"nop", nop}, {"sub", sub},
-		{NULL, NULL}};
+		{"div", _div}, {"mul", _mul},
+		{"mod", _mod}, {"pchar", pchar},
+		{"pstr", pstr}, {"rotl", rotl_f},
+		{"rotr", rotr}, {NULL, NULL}};
 	if (ac != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
