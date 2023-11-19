@@ -36,3 +36,57 @@ void pop(stack_t **stack, unsigned int line_number)
 	*stack = (*stack)->next;
 	free(tmp);
 }
+
+/**
+ * to_stack - switches the mode to stack
+ * @stack: stack
+ * @line_number: the line number
+ */
+
+void to_stack(__attribute__ ((unused))stack_t **stack,
+				__attribute__ ((unused))unsigned int line_number)
+{
+	glob_vars->SQ = 0;
+}
+
+/**
+ * to_queue - switches to queue
+ * @stack: stack
+ * @line_number: the line number
+ */
+
+void to_queue(__attribute__ ((unused))stack_t **stack,
+		__attribute__ ((unused))unsigned int line_number)
+{
+	glob_vars->SQ = 1;
+}
+
+/**
+ * add_nodeat_end - adds node at the end
+ * @stack: the stack
+ * @new_node: the data
+ * Return: he address of the new element, or NULL if it failed
+*/
+
+stack_t *add_nodeat_end(stack_t **stack, stack_t *new_node)
+{
+	stack_t *ptr_to_last;
+
+	if (new_node == NULL)
+		return (NULL);
+	new_node->next = NULL;
+	new_node->prev = NULL;
+	if (*stack == NULL)
+	{
+		(*stack) = new_node;
+		return (*stack);
+	}
+	ptr_to_last = (*stack);
+	while (ptr_to_last->next != NULL)
+	{
+		ptr_to_last = ptr_to_last->next;
+	}
+	ptr_to_last->next = new_node;
+	new_node->prev = ptr_to_last;
+	return (*stack);
+}

@@ -79,12 +79,17 @@ void rotl_f(stack_t **stack, unsigned int line_number);
 void rotr(stack_t **stack, __attribute__ ((unused))unsigned int line_number);
 void pchar(stack_t **stack, unsigned int line_number);
 void pstr(stack_t **stack, __attribute__ ((unused))unsigned int line_number);
+void to_queue(stack_t **stack,
+		__attribute__ ((unused))unsigned int line_number);
+void to_stack(stack_t **stack,
+				__attribute__ ((unused))unsigned int line_number);
 
 /*process funtions*/
 void tokenize(void);
 void file_reading(FILE *file, stack_t **stack, instruction_t *instructions);
 void instruct_ident(stack_t **stack, unsigned int line_number,
 						FILE *file, instruction_t instructions[]);
+stack_t *add_nodeat_end(stack_t **stack, stack_t *new_node);
 
 /* to use functions*/
 bool is_op_valid(char *op, instruction_t instructions[]);

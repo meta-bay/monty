@@ -21,7 +21,8 @@ int main(int ac, char *av[])
 		{"div", _div}, {"mul", _mul},
 		{"mod", _mod}, {"pchar", pchar},
 		{"pstr", pstr}, {"rotl", rotl_f},
-		{"rotr", rotr}, {NULL, NULL}};
+		{"rotr", rotr}, {"stack", to_stack},
+		{"queue", to_queue}, {NULL, NULL}};
 	if (ac != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");

@@ -26,6 +26,11 @@ void push(stack_t **stack, unsigned int line_number)
 	}
 	new_node->n = atoi(glob_vars->the_tokens[1]);
 	new_node->prev = NULL;
+	if (glob_vars->SQ == 1)
+	{
+		add_nodeat_end(stack, new_node);
+		return;
+	}
 	if (*stack == NULL)
 	{
 		new_node->next = NULL;
